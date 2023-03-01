@@ -1,10 +1,10 @@
 
-import Bai2 from './components/Bai2';
+import Bai3 from './components/Bai3';
 
 const App =() => { 
  return (
   <div>
-    <Bai2/>
+    <Bai3/>
   </div>
  )
   }
