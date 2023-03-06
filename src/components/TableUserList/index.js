@@ -1,38 +1,28 @@
-
+import { Table } from 'antd'
 
 const TableUserList = (props) => {
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Phone',
+      dataIndex: 'phone',
+      key: 'phone',
+    },
+  ];
   
   return (
-      <table border>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th></th>
-        </tr>
-      {props.users.map((user) => {
-        return (
-          <tr>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.phone}</td>
-            <button
-              onClick={(e) => {
-                props.onEdit(user);
-              }}
-            >
-              Edit
-            </button>
-            <button
-              onClick={(e) => {
-                props.onDelete(user);
-                 }}>
-              Delete
-            </button>
-          </tr>
-        );
-      })}
-      </table>
+    <Table dataSource={props.dataSource} columns={columns} />
   );
-}
+};
+
 export default TableUserList;

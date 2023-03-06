@@ -1,4 +1,4 @@
-import {useEffect, useState } from "react";
+import {useEffect, useState, useMemo } from "react";
 import FormUser from "./FormUser"
 import TableUserList from "./TableUserList"
 
@@ -8,18 +8,19 @@ const DEFAULT_USER = { name: "", email: "", phone: "" }; //hằng số, ko đổ
 const TableUsers = () => {
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState(DEFAULT_USER);
-  const [searchUserList, setsearchUserList] = useState([]);
+  //const [searchUserList, setsearchUserList] = useState([]);
   const [keyword, setKeyword] = useState('');
   
-  useEffect(() => {
+ const searchUserList = useMemo(() => {
     if(keyword !== ''){
       const newUsers = users.filter((item) => {
-        return item.name === keyword
+       // return item.name === keyword //search nguyên cụm từ
+       return item.name.includes(keyword) || item.email.includes(keyword)  //search từng từ riêng lẻ
       })
-      setsearchUserList(newUsers)
+      return newUsers
     }
     else {
-      setsearchUserList(users)
+      return users
     }
 
   }, [keyword, users])
